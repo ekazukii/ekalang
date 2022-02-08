@@ -9,6 +9,10 @@
   },
   "private": true,
   "dependencies": {
+    "@codemirror/lang-javascript": "^0.19.7",
+    "@codemirror/theme-one-dark": "^0.19.1",
+    "@nrwl/node": "^13.7.1",
+    "@uiw/react-codemirror": "^4.3.3",
     "core-js": "^3.6.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",

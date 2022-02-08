@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "compiler": "libs/compiler",
     "ide": "apps/ide",
     "ide-e2e": "apps/ide-e2e"
   }
