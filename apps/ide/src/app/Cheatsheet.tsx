@@ -47,7 +47,7 @@ export default function Cheatsheet() {
           <br />
           if LE 10 12
           <br />
-          print string "10 lower or equal than 12"
+          print string "10 lower or equal than 12 zefut"
           <br />
           else
           <br />

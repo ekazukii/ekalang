@@ -10,7 +10,7 @@ const StyledConsole = styled.div`
   font-family: monospace;
   color: white;
   height: 30vh;
-  overflow: scroll;
+  overflow: auto;
   padding: 10px;
   box-sizing: border-box;
 `;
