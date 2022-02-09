@@ -69,13 +69,34 @@ export default function Result() {
     document.body.removeChild(element);
   };
 
+  const exportFile = () => {
+    if (!code) return;
+    download('code.eka', code);
+  };
+
+  const importFile: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+    if (!event.target.files) {
+      console.log('errr');
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.readAsText(event.target.files[0], 'UTF-8');
+    fileReader.onload = (e) => {
+      if (!e.target) {
+        console.log('errr');
+        return;
+      }
+      if (typeof e.target.result == 'string') setCode(e.target.result);
+    };
+  };
+
   const handleChange = (value: string) => {
     setCode(value);
   };
 
   return (
     <StyledMain>
-      <LateralBar run={run} compile={handleCompile}></LateralBar>
+      <LateralBar run={run} compile={handleCompile} exportFile={exportFile} importFile={importFile}></LateralBar>
       <StyledContainer>
         <StyledText>
           <CodeMirror

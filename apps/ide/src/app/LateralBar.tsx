@@ -35,6 +35,28 @@ const StyledButton = styled.button`
   }
 `;
 
+const StyledLabel = styled.label`
+  background-color: inherit;
+  color: #b2ffa9;
+  border-radius: 6px;
+  box-shadow: none;
+  border: 1px solid #b2ffa9;
+  padding: 5px;
+  min-width: 60px;
+  text-align: center;
+
+  &:hover {
+    background-color: #b2ffa9;
+    color: black;
+    cursor: pointer;
+  }
+`;
+
+const StyledInput = styled.input`
+  visibility: hidden;
+  display: none;
+`;
+
 const StyledImg = styled.img`
   width: 60px;
 `;
@@ -69,9 +91,11 @@ const EkaLogo = styled.a`
 type LateralProps = {
   run: () => void;
   compile: () => void;
+  exportFile: () => void;
+  importFile: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function LateralBar({ run, compile }: LateralProps) {
+export default function LateralBar({ run, compile, exportFile, importFile }: LateralProps) {
   const [open, setState] = useState(false);
   return (
     <StyledNavbar open={open}>
@@ -79,8 +103,11 @@ export default function LateralBar({ run, compile }: LateralProps) {
         <StyledButton onClick={run}>Run</StyledButton>
         <StyledButton onClick={compile}>Compile</StyledButton>
         <StyledButton onClick={() => setState(!open)}>{open ? 'Close cheatsheet' : 'Open cheatsheet'}</StyledButton>
-        <StyledButton>Export</StyledButton>
-        <StyledButton>Import</StyledButton>
+        <StyledButton onClick={exportFile}>Export</StyledButton>
+        <StyledLabel>
+          Import
+          <StyledInput type="file" id="file" name="file" onChange={importFile} />
+        </StyledLabel>
       </StyledBtnGroup>
 
       {open ? (
