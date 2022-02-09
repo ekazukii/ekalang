@@ -6,6 +6,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import styled from 'styled-components';
 import Console from './Console';
 import LateralBar from './LateralBar';
+import useLocalStorage from './useLocalStorage';
 
 const StyledMain = styled.div`
   display: flex;
@@ -29,7 +30,7 @@ const defaultCode =
   'init int index\naffect index 0\nprint string "Looping from 0 to 10"\nwhile LE index 10\n print int index\n affect index ADD 1 index\nend';
 
 export default function Result() {
-  const [code, setCode] = useState<string>(defaultCode);
+  const [code, setCode] = useLocalStorage<string>('code', defaultCode);
   const [logs, setLogs] = useState<Array<string>>([]);
 
   const run = () => {
@@ -60,10 +61,7 @@ export default function Result() {
 
   const download = (filename: string, text: string) => {
     const element = document.createElement('a');
-    element.setAttribute(
-      'href',
-      `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`
-    );
+    element.setAttribute('href', `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`);
     element.setAttribute('download', filename);
     element.style.display = 'none';
     document.body.appendChild(element);
@@ -81,7 +79,7 @@ export default function Result() {
       <StyledContainer>
         <StyledText>
           <CodeMirror
-            value={defaultCode}
+            value={code}
             height="70vh"
             width="100%"
             theme={oneDark}
